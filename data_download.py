@@ -29,8 +29,6 @@ WorldID = {
     "버닝3" : 52
 }
 
-
-
 def createFolder(directory):
     try:
         if not os.path.exists(directory):
@@ -74,7 +72,7 @@ def find_Dojang (name) :
 
 
 def make_guild_data_mk2 (GuildName, World) :
-    guild_select_url = "https://maplestory.nexon.com/Ranking/World/Guild?t=1&n=" + GuildName;
+    guild_select_url = "https://maplestory.nexon.com/N23Ranking/World/Guild?t=1&n=" + GuildName
     SELECTED_GID = -1
 
     time.sleep(0.5)
@@ -115,6 +113,7 @@ def make_guild_data_mk2 (GuildName, World) :
         idx_count = 0
         while True :
 
+            #https://maplestory.nexon.com/Common/Guild?gid=758375&wid=16
             guild_url = 'https://maplestory.nexon.com/Common/Guild?gid=' + SELECTED_GID + '&wid=' + World + '&orderby=1&page=' + str(page_num)
 
             res = requests.get(guild_url)
@@ -143,7 +142,7 @@ def make_guild_data_mk2 (GuildName, World) :
                         col21 = tds[1].find('a').text # 닉네임
                         col22 = tds[1].find('dd').text # 직업 (대분류)
                         
-                        Dojang_log = find_Dojang(str(col21))
+                        # Dojang_log = find_Dojang(str(col21))
                         
                         
                         col = {'idx' : idx_count,
@@ -151,12 +150,13 @@ def make_guild_data_mk2 (GuildName, World) :
                                'img_src' : col2,
                                'name' : col21,
                                'category' : col22,
-                               'class' : Dojang_log[2],
+                            #    'class' : Dojang_log[2],
                                'Lv' : col3,
                                'exp' : col4,
                                'popularity' : col5,
-                               'dojang_best_info' : Dojang_log[0],
-                               'dojang_latest_info' : Dojang_log[1]}
+                            #    'dojang_best_info' : Dojang_log[0],
+                            #    'dojang_latest_info' : Dojang_log[1]
+                            }
 
                         data.append(col)
                         idx_count = idx_count + 1
@@ -200,12 +200,12 @@ def init() :
     with open('./jsonData/charData.json', 'w', encoding="utf-8") as make_file:
         json.dump(file_data, make_file, ensure_ascii=False, indent="\t")
 
-    createFolder('./img/charImg/')
-    for char_data in data :
-        url = char_data["img_src"]
-        urllib.request.urlretrieve(url,'./img/charImg/' + char_data["name"] + ".png")
-        print(char_data["name"] + ".png")
-        time.sleep(0.3)
+    # createFolder('./img/charImg/')
+    # for char_data in data :
+    #     url = char_data["img_src"]
+    #     urllib.request.urlretrieve(url,'./img/charImg/' + char_data["name"] + ".png")
+    #     print(char_data["name"] + ".png")
+    #     time.sleep(0.3)
     
     print("fin")
     time.sleep(1)

@@ -84,8 +84,8 @@ def char_img_load() :
     if isCharDataExist :
         for data in guild_data["charData"] :
             name = data["name"]
-            temp_img = ImageTk.PhotoImage(Image.open(guild_imgData_path + name + ".png"))
-            char_img_dict[name] = temp_img
+            # temp_img = ImageTk.PhotoImage(Image.open(guild_imgData_path + name + ".png"))
+            char_img_dict[name] = setting_button_img
         return True
     else : 
         return False
@@ -215,10 +215,11 @@ def add_line(idx, data):
 
     char_name = data
 
-    if char_img_dict[char_name] == None :
-        char_img = setting_button_img
-    else : 
-        char_img = char_img_dict[char_name]
+    # if char_img_dict[char_name] == None :
+    #     char_img = setting_button_img
+    # else : 
+    #     char_img = char_img_dict[char_name]
+    char_img = setting_button_img
     char_btn = Button(main_fraim, image=char_img, bg="#ffffff", command=lambda : show_charlog_graph(char_name))
     char_btn.grid(row=(2 * idx) , column=0)
 

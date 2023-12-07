@@ -93,17 +93,19 @@ def detect_text(path):
                 response.error.message))
 
     for t in list_data :
-        if t[4] == '' or t[4] == 'ㅇ' or t[4] == 'o' or t[4] == 'O' :
+        # print(f'weekly : {t[4]}, suro : {t[5]}, flag : {t[6]}')
+
+        t[4] = t[4].replace("55", "5")
+        t[4] = t[4].replace("LO5", "5")
+        
+        if t[4] == '' or t[4] == 'ㅇ' or t[4] == 'o' or t[4] == 'O' or t[4] == 'ㅁ' or t[4] == 'n'or t[4] == 'D':
             t[4] = '0'
         
-        if t[5] == '' or t[5] == 'ㅇ' or t[5] == 'o' or t[5] == 'O' :
+        if t[5] == '' or t[5] == 'ㅇ' or t[5] == 'o' or t[5] == 'O' or t[5] == 'ㅁ'or t[5] == 'n'or t[5] == 'D':
             t[5] = '0'
 
-        if t[6] == '' or t[6] == 'ㅇ' or t[6] == 'o' or t[6] == 'O' :
+        if t[6] == '' or t[6] == 'ㅇ' or t[6] == 'o' or t[6] == 'O' or t[6] == 'ㅁ'or t[6] == 'n'or t[6] == 'D':
             t[6] = '0'
-
-        if t[4] == 'LO' :
-            t[4] = 5
     
     return list_data
 
